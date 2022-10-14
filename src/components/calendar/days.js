@@ -2,7 +2,7 @@ export default function Days (props) {
     const current = props.date
     const year = current.getFullYear()
     const month = current.getMonth()
-    const day = current.getDate()
+    // const day = current.getDate()
     
     const firstDayOfMonth = new Date(year, month, 1)
     const weekDayOfFirstDayOfMonth = firstDayOfMonth.getDay()
@@ -12,7 +12,7 @@ export default function Days (props) {
   
     // console.log("Year:", year )
     // console.log("Month:", month)
-    console.log("Day:", day, props.date.getDate())
+    // console.log("Day:", props.changeDateOnClick(daysOfMonth), props.date.getDate())
     // console.log("MonthLenght:", monthLength)
     // console.log("weekDay:", weekDayOfFirstDayOfMonth)
     // console.log("FirstDay:", firstDayOfMonth.toDateString())
@@ -36,14 +36,15 @@ export default function Days (props) {
 
         daysOfMonth.push(dataOfDay)
     }
-    console.log(daysOfMonth)
+    // console.log(daysOfMonth)
     // current.setMonth(current.getMonth());
     // const previousMonth = current.toLocaleString('default', { month: 'long' });
+    
     return (
         <div className="calendar-days">
-            {daysOfMonth.map((day) => {
+            {daysOfMonth.map((day, i) => {
                 return (
-                    <div className={"calendar-day" + (day.empty ? " empty" : " full" + (day.currentDay ? " current-day" : ""))}>
+                    <div key={i} className={"calendar-day" + (day.empty ? " empty" : " full" + (day.currentDay ? " current-day" : ""))} onClick = {() => {props.changeDateOnClick(day)}}>
                         <p className={day.selected ? " selected" : ""}>{day.numberDay}</p>
                     </div>
                 )

@@ -7,25 +7,33 @@ import './calendar-days.css'
 export default class Calendar extends Component {
     constructor() {
         super();
-        this.date = {current: new Date()}
+        this.date = {
+            current: new Date()
+        }
         this.weekDay = ['Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob', "Nie"]
     }
-
 
     changeMonth() {
         let changeMonth = this.date.current.toLocaleString('default', { month: 'long' })
         let changeMonthToUpperCase = changeMonth.charAt(0).toUpperCase() + changeMonth.slice(1)
         return changeMonthToUpperCase
     }
+
     previousMonth = () => {
         this.setState({current: new Date(this.date.current.setMonth(this.date.current.getMonth() - 1))})
-        this.setState({month: this.date.current.toLocaleString('default', { month: 'long' })})
-        console.log(this.month)
+        // console.log(this.month)
+        // console.log(this.date.current)
     }
 
     nextMonth = () => {
         this.setState({current: new Date(this.date.current.setMonth(this.date.current.getMonth() + 1))})
-        console.log(this.date.current.getMonth())
+        // console.log(this.date.current.getMonth())
+        // console.log(this.date.current)
+    }
+
+    changeDateOnClick = (day) => {
+        this.setState({current: new Date(this.date.current.setFullYear(day.year), this.date.current.setMonth(day.month), this.date.current.setDate(day.numberDay))})
+        console.log(this.date.current.toDateString())
     }
     
 
@@ -46,14 +54,14 @@ export default class Calendar extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='week-days'>{this.weekDay.map(day => {
+                <div className='week-days'>{this.weekDay.map((day, i) => {
                     return (
-                        <div className="week-day">
+                        <div key={i} className="week-day">
                             {day}
                         </div>
                     )
                 })}</div>
-                <Days date = {this.date.current}/>
+                <Days date = {this.date.current} changeDateOnClick = {this.changeDateOnClick}/>
             </div>
         )
     }
