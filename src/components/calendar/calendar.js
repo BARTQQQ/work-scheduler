@@ -21,14 +21,10 @@ export default class Calendar extends Component {
 
     previousMonth = () => {
         this.setState({current: new Date(this.date.current.setMonth(this.date.current.getMonth() - 1))})
-        // console.log(this.month)
-        // console.log(this.date.current)
     }
 
     nextMonth = () => {
         this.setState({current: new Date(this.date.current.setMonth(this.date.current.getMonth() + 1))})
-        // console.log(this.date.current.getMonth())
-        // console.log(this.date.current)
     }
 
     changeDateOnClick = (day) => {
@@ -36,7 +32,6 @@ export default class Calendar extends Component {
         console.log(this.date.current.toDateString())
     }
     
-
     render() {
         return (
             <div className="calendar-body">

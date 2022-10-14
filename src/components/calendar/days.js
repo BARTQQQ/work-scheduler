@@ -2,22 +2,11 @@ export default function Days (props) {
     const current = props.date
     const year = current.getFullYear()
     const month = current.getMonth()
-    // const day = current.getDate()
-    
     const firstDayOfMonth = new Date(year, month, 1)
     const weekDayOfFirstDayOfMonth = firstDayOfMonth.getDay()
-    
     const monthLength = new Date(year, month + 1, 0).getDate();
     let daysOfMonth = []
   
-    // console.log("Year:", year )
-    // console.log("Month:", month)
-    // console.log("Day:", props.changeDateOnClick(daysOfMonth), props.date.getDate())
-    // console.log("MonthLenght:", monthLength)
-    // console.log("weekDay:", weekDayOfFirstDayOfMonth)
-    // console.log("FirstDay:", firstDayOfMonth.toDateString())
-    // console.log("FirstDay:", current.toLocaleString('default', { month: 'long' }))
-
     for(let emptyDay = 1; emptyDay < weekDayOfFirstDayOfMonth; emptyDay++){
         daysOfMonth.push({empty: true})
     }
@@ -36,9 +25,6 @@ export default function Days (props) {
 
         daysOfMonth.push(dataOfDay)
     }
-    // console.log(daysOfMonth)
-    // current.setMonth(current.getMonth());
-    // const previousMonth = current.toLocaleString('default', { month: 'long' });
     
     return (
         <div className="calendar-days">
