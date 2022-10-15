@@ -4,11 +4,23 @@
 // $aqua: #a8dadc;
 // $white: #f1faee;
 
-$pink-dark: #e66b6b;
-$pink: #ffa685; // lepiej z ciemnym tekstem
-$gray-dark: #505050;
-$gray-light: #909090;
-$white: #f2f2f2; // lepiej z ciemnym tekstem
+// $pink-dark: #e66b6b;
+// $pink: #ffa685; // lepiej z ciemnym tekstem
+// $pink-opacity: rgba(255, 166, 133, 0.2)
+// $pink-opacity-hover: rgba(255, 166, 133, 0.4)
+// $gray-dark: #505050;
+// $gray-light: #909090;
+// $white: #f2f2f2; // lepiej z ciemnym tekstem
+
+$white: rgb(248, 249, 250);
+$white-l1: rgb(233, 236, 239);
+$white-l2: rgb(222, 226, 230);
+$white-l3: rgb(206, 212, 218);
+$white-l4: rgb(173, 181, 189);
+$gray: rgb(108, 117, 125);
+$gray-d1: rgb(73, 80, 87);
+$gray-d2: rgb(52, 58, 64);
+$gray-d3: rgb(33, 37, 41);
 
 $time: .2s;
 
@@ -29,8 +41,8 @@ body {
     @include display-flex(center);
     font-size: 1em;
     font-family: Montserrat, "sans-serif";
-    background: $gray-dark;
-    color: $white;
+    background: $white-l3;
+    color: $gray-d2;
 }
 .arrow {
     fill:$white;
@@ -43,7 +55,7 @@ body {
     .user {
         width: 20%;
         height: 100%;
-        background: $gray-light;
+        background: $white-l3;
     }
 
     .calendar-event-wrapper {
@@ -52,7 +64,7 @@ body {
 
         .event {
             width: 30%;
-            background: $pink-dark;
+            background: $gray-d1;
             color: $white;
     
             .event-header {
@@ -85,7 +97,7 @@ body {
             .calendar-header {
                 @include display-flex(center);
                 flex-direction: column;
-                background: $pink-dark;
+                background: $gray-d1;
                 flex: 0 1 auto;
     
                 .calendar-month-switch{
@@ -105,7 +117,7 @@ body {
                             transition: $time;
     
                             &:hover {
-                                fill: $gray-dark
+                                fill: $white-l4
                             }
                         }
                     }
@@ -114,6 +126,7 @@ body {
                         width: 70%;
                         // user-select: none;
                         p {
+                            color: $white;
                             padding: 0.2em 0;
                             text-align: left;
     
@@ -139,7 +152,7 @@ body {
                 .week-days {
                     display: flex;
                     // overflow-y: auto;
-                    color: $pink-dark;
+                    color: $gray-d1;
                     padding: 0 0 2em 0;
     
                     // user-select: none;
@@ -154,7 +167,7 @@ body {
                 .calendar-days {
                     display: flex;
                     flex-wrap: wrap;
-                    color: $gray-dark;
+                    color: $gray-d1;
                 
                     .calendar-day {
                         width:calc(100% / 7)
@@ -172,22 +185,21 @@ body {
                         transition: $time;
         
                         &:nth-child(even) {
-                            background: rgba(255, 166, 133, 0.2);
+                            background: $white-l2;
         
                             &:hover {
-                                background: rgba(255, 166, 133, 0.4);
+                                background: $white-l3;
                             }
                         }
         
                         &:nth-child(odd) {
                             &:hover {
-                                background: rgba(255, 166, 133, 0.2);
-                                background: rgba(144, 144, 144, 0.2);
+                                background: $white-l1;
                             }
                         }
         
                         .selected {
-                            color: $pink-dark;
+                            color: $gray-d3;
                             font-weight: 600;
                         }
                         p {
