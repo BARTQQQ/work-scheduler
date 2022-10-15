@@ -57,13 +57,18 @@ body {
     
             .event-header {
                 padding: 2em 0;
-                // background: $gray-light;
+                // background: $pink;
+
                 p {
                     text-align: center;
-                    font-size: 2.5em;
-                    line-height: 2em;
-                    font-weight: 600;
+                    font-size: 1.5em;
+                    line-height: 1.35em;
                     // text-transform: uppercase;
+
+                    &:first-child {
+                        font-weight: 600;
+                        font-size: 2.5em;
+                    }
                 }
             }
         }

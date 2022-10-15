@@ -48,9 +48,13 @@ body {
 
 #root .calendar-event-wrapper .event .event-header p {
   text-align: center;
-  font-size: 2.5em;
-  line-height: 2em;
+  font-size: 1.5em;
+  line-height: 1.35em;
+}
+
+#root .calendar-event-wrapper .event .event-header p:first-child {
   font-weight: 600;
+  font-size: 2.5em;
 }
 
 #root .calendar-event-wrapper .calendar-body {
