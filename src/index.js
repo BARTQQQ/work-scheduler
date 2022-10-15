@@ -9,8 +9,6 @@ root.render(
       User
     </div>
     <Calendar />
-    <div className="events">
-      Event
-    </div>
+
   </React.StrictMode>
 );
