@@ -61,7 +61,7 @@ body {
   width: 3em;
   height: 3em;
   fill: #f2f2f2;
-  transition: .1s;
+  transition: 0.2s;
 }
 
 #root .calendar-body .calendar-header .calendar-month-switch .arrow-left .arrow:hover,
@@ -71,7 +71,6 @@ body {
 
 #root .calendar-body .calendar-header .calendar-month-switch .calendar-header-date {
   width: 70%;
-  user-select: none;
 }
 
 #root .calendar-body .calendar-header .calendar-month-switch .calendar-header-date p {
@@ -122,10 +121,20 @@ body {
   border-radius: 25px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 #root .calendar-body .calendar-days .full:nth-child(even) {
   background: rgba(144, 144, 144, 0.15);
+}
+
+#root .calendar-body .calendar-days .full:nth-child(even):hover {
+  background: rgba(144, 144, 144, 0.3);
+}
+
+#root .calendar-body .calendar-days .full:nth-child(odd):hover {
+  background: rgba(255, 166, 133, 0.2);
 }
 
 #root .calendar-body .calendar-days .full .selected {
