@@ -12,16 +12,34 @@
 // $gray-light: #909090;
 // $white: #f2f2f2; // lepiej z ciemnym tekstem
 
-$white: rgb(248, 249, 250);
-$white-l1: rgb(233, 236, 239);
-$white-l2: rgb(222, 226, 230);
-$white-l3: rgb(206, 212, 218);
-$white-l4: rgb(173, 181, 189);
-$gray: rgb(108, 117, 125);
-$gray-d1: rgb(73, 80, 87);
-$gray-d2: rgb(52, 58, 64);
-$gray-d3: rgb(33, 37, 41);
+// $white: #000;
+// $white-l1: rgb(233, 236, 239);
+// $white-l2: rgb(222, 226, 230);
+// $white-l3: rgb(206, 212, 218);
+// $white-l4: rgb(173, 181, 189);
+// $gray: rgb(108, 117, 125);
+// $gray-d1: rgb(73, 80, 87);
+// $gray-d2: rgb(52, 58, 64);
+// $gray-d3: rgb(33, 37, 41);
 
+// colors
+
+$white: #FFF;
+$white-hover: #EEE;
+$beige: rgb(235,219,190);
+$beige-hover: rgb(216, 193, 146);
+$gray: rgba(125, 136, 146, 0.336);
+$gray-hover: #d3d7da;
+$gray-dark: rgb(33, 37, 41);
+$black: #000;
+
+$green: #59e76a;
+$red: #f04525;
+$orange: #ffa657;
+// set px
+$border-radius: 10px;
+
+// set time durration
 $time: .2s;
 
 @mixin display-flex($position) {
@@ -41,12 +59,10 @@ body {
     @include display-flex(center);
     font-size: 1em;
     font-family: Montserrat, "sans-serif";
-    background: $white-l3;
-    color: $gray-d2;
+    background: $white;
+    color: $black;
 }
-.arrow {
-    fill:$white;
-}
+
 #root {
     display: flex;
     height: 100vh;
@@ -55,7 +71,8 @@ body {
     .user {
         width: 20%;
         height: 100%;
-        background: $white-l3;
+        background: $gray-dark;
+        color: $white;
     }
 
     .calendar-event-wrapper {
@@ -64,23 +81,80 @@ body {
 
         .event {
             width: 30%;
-            background: $gray-d1;
-            color: $white;
+            // background: $gray-dark;
+            color: $black;
+            display: flex;
+            flex-direction: column;
+            // justify-content: space-between;
     
             .event-header {
                 padding: 2em 0;
-                // background: $pink;
+                background: $gray-dark;
+                color: $white;
 
                 p {
                     text-align: center;
-                    font-size: 1.5em;
-                    line-height: 1.35em;
+                    font-size: 1.4em;
+                    padding: 0.2em 0;
+
+                    // line-height: 1.35em;?
                     // text-transform: uppercase;
 
                     &:first-child {
                         font-weight: 600;
-                        font-size: 2.5em;
+                        font-size: 2em;
                     }
+                }
+            }
+
+            .event-container {
+                flex-grow: 2;
+                
+                .event-item {
+                    margin: 1em;
+                    padding: 1em;
+                    background: $gray-dark;
+                    color: $white;
+                    border-radius: $border-radius;
+
+                    p  {
+                        text-align: left;
+                    }
+    
+                    .event-user {
+                        font-weight: 600;
+                    }
+                }
+            }
+            
+            .event-manage {
+                width: 100%;
+                text-align: center;
+
+                button {
+                    padding: 0.5em 1em;
+                    margin: 0.5em;
+                    background: $gray-dark;
+                    font-size: 1.3em;
+                    border: none;
+                    border-radius: $border-radius;
+                    // border: 2px solid;
+                    color: $black;
+                }
+
+                .event-add {
+                    color: $green;
+                    border-color: $green;
+                }
+
+                .event-edit {
+                    color: $orange;
+                    border-color: $orange;
+                }
+
+                .event-delete {
+                    color: $red;
+                    border-color: $red;
                 }
             }
         }
@@ -89,15 +163,11 @@ body {
             width: 70%;
             height: 100%;
             flex-flow: column;
-            // -webkit-box-shadow: 1px 0px 10px 0px $gray-dark;
-            // -moz-box-shadow: 1px 0px 10px 0px $gray-dark;
-            // box-shadow: 1px 0px 10px 0px $gray-dark;
-            // z-index: 1;
     
             .calendar-header {
                 @include display-flex(center);
                 flex-direction: column;
-                background: $gray-d1;
+                background: $gray-dark;
                 flex: 0 1 auto;
     
                 .calendar-month-switch{
@@ -117,7 +187,7 @@ body {
                             transition: $time;
     
                             &:hover {
-                                fill: $white-l4
+                                fill: $gray
                             }
                         }
                     }
@@ -144,19 +214,15 @@ body {
             }
     
             .calendar-main {
-                padding: 2em;
                 background: $white;
                 flex-grow: 1;
     
     
                 .week-days {
                     display: flex;
-                    // overflow-y: auto;
-                    color: $gray-d1;
-                    padding: 0 0 2em 0;
-    
-                    // user-select: none;
-        
+                    color: $black;
+                    padding: 2em;
+                    background: $beige;
         
                     .week-day {
                         text-align: center;
@@ -165,9 +231,10 @@ body {
                     }
                 }
                 .calendar-days {
+                    // padding: 2em 2em 0 2em;
                     display: flex;
                     flex-wrap: wrap;
-                    color: $gray-d1;
+                    color: $black;
                 
                     .calendar-day {
                         width:calc(100% / 7)
@@ -178,28 +245,34 @@ body {
                     }
                 
                     .full {
-                        border-radius: 25px;
+                        // border-radius: $border-radius;
                         display: flex;
                         flex-direction: column;
                         cursor: pointer;
                         transition: $time;
-        
+
                         &:nth-child(even) {
-                            background: $white-l2;
-        
+                            background: $white-hover;
+
                             &:hover {
-                                background: $white-l3;
+                                background: $gray-hover;
                             }
                         }
         
-                        &:nth-child(odd) {
+                        &:nth-child(7n),
+                        &:nth-child(7n-1) {
+                            background: $beige;
+        
                             &:hover {
-                                background: $white-l1;
+                                background: $beige-hover;
                             }
+                        }
+        
+                        &:hover {
+                            background: $white-hover;
                         }
         
                         .selected {
-                            color: $gray-d3;
                             font-weight: 600;
                         }
                         p {
