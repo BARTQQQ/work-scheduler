@@ -10,6 +10,10 @@ const Days = (props) => {
     let weekDays = []
     let daysOfMonth = []
 
+    const eventDate = props.eventDate.toDateString()
+
+    console.log(eventDate)
+
     // adds week days to array also transoform date from int to string and sets first letter to uppercase  
     for(let i = 1; i <= 7; i++){
         let days = new Date(2022, 7, i).toLocaleString('default', { weekday: 'long' })
@@ -35,6 +39,8 @@ const Days = (props) => {
         }
         firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
         daysOfMonth.push(dataOfDay)
+
+        // console.log(daysOfMonth[i].dateString === eventDate ? true : false)
     }
     
     return (
@@ -51,7 +57,8 @@ const Days = (props) => {
                     {daysOfMonth.map((day, i) => {
                         return (
                             <div key={i} className={"calendar-day" + (day.empty ? " empty" : " full" + (day.currentDay ? " current-day" : ""))} onClick = {() => {props.changeDateOnClick(day)}}>
-                                <p className={day.selected ? " selected" : ""}>{day.numberDay}</p>
+                                <p className={"calendar-day-number" + (day.selected ? " selected" : "")}>{day.numberDay}</p>
+                                <p className='calendar-day-event-date'>{eventDate === day.dateString ? "a" : " "}</p>
                             </div>
                         )
                     })}

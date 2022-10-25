@@ -69,10 +69,60 @@ body {
     width: 100vw;
 
     .user {
+        @include display-flex(center);
         width: 20%;
         height: 100%;
         background: $gray-dark;
         color: $white;
+
+        .user-login,
+        .user-register {
+            form {
+                @include display-flex(center);
+                flex-direction: column;
+                margin: 0 0 1em 0;
+
+                h1 {
+                    margin: 0 0 0.5em 0;
+                }
+
+                label {
+                    margin: 0 0 1em 0;
+
+                    p {
+                        text-align: left;
+                        font-size: 0.8em;
+                        margin: 0 0 2px 0;
+                    }
+
+                    input {
+                        outline: none;
+                    }
+                }
+
+                input {
+                    border-radius: $border-radius;
+                    border: none;
+                    padding: 1em;
+                }
+
+                input[type=submit] {
+                    background: $white;
+                    width: 100%;
+                    transition: $time;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: $beige;
+                    }
+                }
+            }
+
+            p {
+                text-align: center;
+                font-size: 0.8em;
+            }
+        }
     }
 
     .calendar-event-wrapper {
@@ -109,20 +159,51 @@ body {
 
             .event-container {
                 flex-grow: 2;
-                
+
                 .event-item {
+                    display: flex;
+                    justify-content: space-between;
                     margin: 1em;
                     padding: 1em;
-                    background: $gray-dark;
-                    color: $white;
+                    background: $white;
+                    color: $black;
+                    border: 1px solid $gray-dark;
                     border-radius: $border-radius;
-
-                    p  {
-                        text-align: left;
+                    .event-item-data {
+                        p  {
+                            text-align: left;
+                            margin-bottom: 0.5em;
+                        }
+        
+                        .event-user {
+                            font-weight: 600;
+                        }
                     }
-    
-                    .event-user {
-                        font-weight: 600;
+
+                    .event-manage-data {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        button {
+                            // @include display-flex(center);
+                            // margin: 0.5em;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                        }
+        
+                        .event-icon {
+                            border-radius: 50px;
+                            width: 1.5em;
+                            height: 1.5em;
+                            .event-icon-edit {
+                                fill: $orange;
+                            }
+            
+                            .event-icon-delete {
+                                fill: $red;
+                            }
+                        }
                     }
                 }
             }
@@ -132,29 +213,30 @@ body {
                 text-align: center;
 
                 button {
-                    padding: 0.5em 1em;
+                    // @include display-flex(center);
                     margin: 0.5em;
-                    background: $gray-dark;
-                    font-size: 1.3em;
-                    border: none;
-                    border-radius: $border-radius;
-                    // border: 2px solid;
-                    color: $black;
+                    background: $white;
+                    border: 1px solid $gray-dark;
+                    cursor: pointer;
                 }
 
-                .event-add {
-                    color: $green;
-                    border-color: $green;
-                }
+                .event-icon {
+                    width: 4em;
+                    height: 4em;
+                    border-radius: 50px;
+                    padding: 1rem;                  
 
-                .event-edit {
-                    color: $orange;
-                    border-color: $orange;
-                }
+                    .event-icon-add {
+                        fill: $green;
+                    }
 
-                .event-delete {
-                    color: $red;
-                    border-color: $red;
+                    .event-icon-edit {
+                        fill: $orange;
+                    }
+    
+                    .event-icon-delete {
+                        fill: $red;
+                    }
                 }
             }
         }
@@ -221,7 +303,7 @@ body {
                 .week-days {
                     display: flex;
                     color: $black;
-                    padding: 2em;
+                    padding: 1em;
                     background: $beige;
         
                     .week-day {
@@ -237,7 +319,8 @@ body {
                     color: $black;
                 
                     .calendar-day {
-                        width:calc(100% / 7)
+                        min-height: 5em;
+                        width:calc(100% / 7);
                     }
                 
                     .current-day {
@@ -259,8 +342,8 @@ body {
                             }
                         }
         
-                        &:nth-child(7n),
-                        &:nth-child(7n-1) {
+                        // &:nth-child(7n-1),
+                        &:nth-child(7n) {
                             background: $beige;
         
                             &:hover {
@@ -275,10 +358,14 @@ body {
                         .selected {
                             font-weight: 600;
                         }
-                        p {
+                        .calendar-day-number {
                             font-size: 1.3em;
-                            margin: 0.5em 0 2em 1em;
-                            
+                            margin: 0.5em 0 0.5em 0.5em;
+                        }
+
+                        .calendar-day-event-date {
+                            margin: 0 0 0.5em 0.5em;
+
                         }
                     }
                 

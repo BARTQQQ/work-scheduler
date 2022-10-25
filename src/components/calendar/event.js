@@ -1,4 +1,7 @@
 import React from 'react';
+import {ReactComponent as Edit} from '../icons/edit-pen.svg'
+import {ReactComponent as Plus} from '../icons/plus.svg'
+import {ReactComponent as Delete} from '../icons/trash.svg'
 
 const Event = (props) => {
 
@@ -8,7 +11,7 @@ const Event = (props) => {
     let getMonthName = props.date.toLocaleString('default', { month: 'long' })
     let getMonthNameToUpperCase = getMonthName.charAt(0).toUpperCase() + getMonthName.slice(1)
 
-    let data = props.date.toLocaleString()
+    let data = props.date.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
     
 
     return (
@@ -19,14 +22,18 @@ const Event = (props) => {
                 </div>
                 <div className="event-container">
                     <div className="event-item">
-                        <p className="event-user">User #1</p>
-                        <p className="event-user-change">Od 10 do 18</p>
+                        <div className="event-item-data">
+                            <p className="event-user">User #1</p>
+                            <p className="event-user-change">Od 10 do 18</p>
+                        </div>
+                        <div className="event-manage-data">
+                            <button className="event-icon" onClick={() => {console.log(data)}}><Edit className="event-icon-edit"/></button>
+                            <button className="event-icon" onClick={() => {console.log(data)}}><Delete className="event-icon-delete"/></button>
+                        </div>
                     </div>
                 </div>
                 <div className="event-manage">
-                    <button className="event-add" onClick={() => {console.log(data)}}>add</button>
-                    <button className="event-edit" onClick={() => {console.log(data)}}>edit</button>
-                    <button className="event-delete" onClick={() => {console.log(data)}}>delete</button>
+                    <button className="event-icon" onClick={() => {console.log(data)}}><Plus className="event-icon-add"/></button>
                 </div>
             </div>
         )

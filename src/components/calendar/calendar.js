@@ -3,7 +3,6 @@ import Days from './days'
 import Event from './event'
 import {ReactComponent as ArrowLeft} from '../icons/arrow-left.svg'
 import {ReactComponent as ArrowRight} from '../icons/arrow-right.svg'
-import './calendar-days-event.css'
 
 export default class Calendar extends Component {
     constructor() {
@@ -12,8 +11,12 @@ export default class Calendar extends Component {
             current: new Date(),
             keepEvent: new Date()
         }
-        
+
+        this.event = new Date(2022, 9, 20)
+        console.log(this.state.current)
     }
+
+    
 
     getMonthName() {
         let getMonthName = this.state.current.toLocaleString('default', { month: 'long' })
@@ -55,7 +58,7 @@ export default class Calendar extends Component {
                             </div>
                         </div>
                     </div>
-                    <Days date = {this.state.current} changeDateOnClick = {this.changeDateOnClick} />
+                    <Days date = {this.state.current} eventDate = {this.event} changeDateOnClick = {this.changeDateOnClick} />
                 </div>
                 <Event date = {this.state.keepEvent}/>
             </div>
