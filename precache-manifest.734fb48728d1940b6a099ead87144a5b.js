@@ -1,19 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "952fd15e5f3684e1d7f9",
-    "url": "/work-scheduler/static/css/main.92fdb020.chunk.css"
+    "revision": "322dc17cd964ca0b607c",
+    "url": "/work-scheduler/static/css/main.d95b1748.chunk.css"
   },
   {
-    "revision": "952fd15e5f3684e1d7f9",
-    "url": "/work-scheduler/static/js/main.952fd15e.chunk.js"
+    "revision": "322dc17cd964ca0b607c",
+    "url": "/work-scheduler/static/js/main.322dc17c.chunk.js"
   },
   {
-    "revision": "e60865abbac5b3f74b7f",
-    "url": "/work-scheduler/static/js/1.e60865ab.chunk.js"
+    "revision": "2fd72c575eeb2394255a",
+    "url": "/work-scheduler/static/js/1.2fd72c57.chunk.js"
   },
   {
     "revision": "92e3cf60ac6cc8864b2b",
     "url": "/work-scheduler/static/js/runtime~main.92e3cf60.js"
+  },
+  {
+    "revision": "c9f4c870eead25e4b956aaef7c540fb9",
+    "url": "/work-scheduler/static/media/b5.c9f4c870.jpg"
   },
   {
     "revision": "951cd60f004ff0ccd416bf7a7fc6634d",
@@ -36,7 +40,7 @@ self.__precacheManifest = [
     "url": "/work-scheduler/static/media/arrow-right.ee845e63.svg"
   },
   {
-    "revision": "8188067373b3cac2de1155560fefea5a",
+    "revision": "122884dbc20c0d1ebc65f799ab21d220",
     "url": "/work-scheduler/index.html"
   }
 ];
