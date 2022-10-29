@@ -1,7 +1,7 @@
 {
-  "main.css": "/work-scheduler/static/css/main.d95b1748.chunk.css",
-  "main.js": "/work-scheduler/static/js/main.322dc17c.chunk.js",
-  "main.js.map": "/work-scheduler/static/js/main.322dc17c.chunk.js.map",
+  "main.css": "/work-scheduler/static/css/main.16984ff2.chunk.css",
+  "main.js": "/work-scheduler/static/js/main.747cb2b0.chunk.js",
+  "main.js.map": "/work-scheduler/static/js/main.747cb2b0.chunk.js.map",
   "static/js/1.2fd72c57.chunk.js": "/work-scheduler/static/js/1.2fd72c57.chunk.js",
   "static/js/1.2fd72c57.chunk.js.map": "/work-scheduler/static/js/1.2fd72c57.chunk.js.map",
   "runtime~main.js": "/work-scheduler/static/js/runtime~main.92e3cf60.js",
@@ -12,8 +12,10 @@
   "static/media/trash.72fc595a.svg": "/work-scheduler/static/media/trash.72fc595a.svg",
   "static/media/arrow-left.e029281c.svg": "/work-scheduler/static/media/arrow-left.e029281c.svg",
   "static/media/arrow-right.ee845e63.svg": "/work-scheduler/static/media/arrow-right.ee845e63.svg",
-  "static/css/main.d95b1748.chunk.css.map": "/work-scheduler/static/css/main.d95b1748.chunk.css.map",
+  "static/media/user-login.fe63da63.svg": "/work-scheduler/static/media/user-login.fe63da63.svg",
+  "static/media/user-register.0607e3e6.svg": "/work-scheduler/static/media/user-register.0607e3e6.svg",
+  "static/css/main.16984ff2.chunk.css.map": "/work-scheduler/static/css/main.16984ff2.chunk.css.map",
   "index.html": "/work-scheduler/index.html",
-  "precache-manifest.734fb48728d1940b6a099ead87144a5b.js": "/work-scheduler/precache-manifest.734fb48728d1940b6a099ead87144a5b.js",
+  "precache-manifest.87d04b6590a33c9304efbce39e3a1a66.js": "/work-scheduler/precache-manifest.87d04b6590a33c9304efbce39e3a1a66.js",
   "service-worker.js": "/work-scheduler/service-worker.js"
 }

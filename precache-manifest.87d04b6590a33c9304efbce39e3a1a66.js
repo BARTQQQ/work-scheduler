@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "322dc17cd964ca0b607c",
-    "url": "/work-scheduler/static/css/main.d95b1748.chunk.css"
+    "revision": "747cb2b0ec0565a4d325",
+    "url": "/work-scheduler/static/css/main.16984ff2.chunk.css"
   },
   {
-    "revision": "322dc17cd964ca0b607c",
-    "url": "/work-scheduler/static/js/main.322dc17c.chunk.js"
+    "revision": "747cb2b0ec0565a4d325",
+    "url": "/work-scheduler/static/js/main.747cb2b0.chunk.js"
   },
   {
     "revision": "2fd72c575eeb2394255a",
@@ -40,7 +40,15 @@ self.__precacheManifest = [
     "url": "/work-scheduler/static/media/arrow-right.ee845e63.svg"
   },
   {
-    "revision": "122884dbc20c0d1ebc65f799ab21d220",
+    "revision": "fe63da63c4b006e08b92f0e06fa38929",
+    "url": "/work-scheduler/static/media/user-login.fe63da63.svg"
+  },
+  {
+    "revision": "0607e3e65847434a71643e227f070b3b",
+    "url": "/work-scheduler/static/media/user-register.0607e3e6.svg"
+  },
+  {
+    "revision": "a1a2044610b4187548554e23e9e4c8ad",
     "url": "/work-scheduler/index.html"
   }
 ];
