@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "16b9884aaa9db59a46c4",
+    "revision": "f095eaf4c462e9801158",
     "url": "/work-scheduler/static/css/main.16984ff2.chunk.css"
   },
   {
-    "revision": "16b9884aaa9db59a46c4",
-    "url": "/work-scheduler/static/js/main.16b9884a.chunk.js"
+    "revision": "f095eaf4c462e9801158",
+    "url": "/work-scheduler/static/js/main.f095eaf4.chunk.js"
   },
   {
     "revision": "2fd72c575eeb2394255a",
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/work-scheduler/static/media/user-register.0607e3e6.svg"
   },
   {
-    "revision": "805024aa2c277efb7d3f75647c7fcbdc",
+    "revision": "c616f55a5cd3f9ab8b09f874e6071183",
     "url": "/work-scheduler/index.html"
   }
 ];
