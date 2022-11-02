@@ -1,17 +1,21 @@
 import React from 'react';
+import {ReactComponent as UserRegister} from './icons/user-register.svg'
+import {
+    Link
+} from "react-router-dom";
 
 const Register = () => {
 
     return (
         <div className="user">
-            <div className="user-register">
+            <header><UserRegister className="icon register"/><h1>New account</h1></header>
+            <section className="user-register">
                 <form action="" method="POST">
-                    <h1>Register</h1>
-                    <label htmlFor="user-name">
+                    <label htmlFor="user-name" id='name'>
                         <p>Name</p>
                         <input id="user-name" type="text"/>
                     </label>
-                    <label htmlFor="user-surrname">
+                    <label htmlFor="user-surrname" id='surrname'>
                         <p>Surrname</p>
                         <input id="user-surrname" type="text"/>
                     </label>
@@ -23,13 +27,10 @@ const Register = () => {
                         <p>Password</p>
                         <input id="password" type="password"/>
                     </label>
-                    <label htmlFor="password-second">
-                        <p>Repeat password</p>
-                        <input id="password-second" type="password"/>
-                    </label>
                     <input type="submit" value="Register" />
                 </form>
-            </div>
+                <p className=''>Have an accout? <Link to="/">login</Link></p>
+            </section>
         </div>
     )
 }

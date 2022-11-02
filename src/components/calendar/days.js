@@ -5,14 +5,14 @@ const Days = (props) => {
     const year = current.getFullYear()
     const month = current.getMonth()
     const firstDayOfMonth = new Date(year, month, 1)
-    const weekDayOfFirstDayOfMonth = firstDayOfMonth.getDay()
     const monthLength = new Date(year, month + 1, 0).getDate()
+    let weekDayOfFirstDayOfMonth = firstDayOfMonth.getDay()
     let weekDays = []
     let daysOfMonth = []
 
     const eventDate = props.eventDate.toDateString()
 
-    console.log(eventDate)
+    console.log(daysOfMonth, weekDayOfFirstDayOfMonth)
 
     // adds week days to array also transoform date from int to string and sets first letter to uppercase  
     for(let i = 1; i <= 7; i++){
@@ -22,6 +22,9 @@ const Days = (props) => {
     }
 
     // sets calendar days which doesnt't belong to this month to empty so they are not displayed
+    if (weekDayOfFirstDayOfMonth === 0){
+        weekDayOfFirstDayOfMonth = 7
+    }
     for(let i = 1; i < weekDayOfFirstDayOfMonth; i++){
         daysOfMonth.push({empty: true})
     }
@@ -56,7 +59,7 @@ const Days = (props) => {
                 <div className="calendar-days">
                     {daysOfMonth.map((day, i) => {
                         return (
-                            <div key={i} className={"calendar-day" + (day.empty ? " empty" : " full" + (day.currentDay ? " current-day" : ""))} onClick = {() => {props.changeDateOnClick(day)}}>
+                            <div key={i} className={"calendar-day" + (day.empty ? " empty" : " fill" + (day.currentDay ? " current-day" : ""))} onClick = {() => {props.changeDateOnClick(day)}}>
                                 <p className={"calendar-day-number" + (day.selected ? " selected" : "")}>{day.numberDay}</p>
                                 <p className='calendar-day-event-date'>{eventDate === day.dateString ? "a" : " "}</p>
                             </div>

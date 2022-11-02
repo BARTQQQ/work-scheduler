@@ -1,15 +1,20 @@
 import React from 'react';
+import {ReactComponent as UserLogin} from './icons/user-login.svg'
+import {
+    Link
+} from "react-router-dom";
+
 
 const Login = () => {
 
     return (
         <div className="user">
-            <div className="user-login">
+            <header><UserLogin className="icon login"/><h1>Login</h1></header>
+            <section className="user-login">
                 <form action="" method="POST">
-                    <h1>Login</h1>
                     <label htmlFor="user-name">
-                        <p>Username</p>
-                        <input id="user-name" type="text"/>
+                        <p>Email</p>
+                        <input id="user-name" type="email"/>
                     </label>
                     <label htmlFor="password">
                         <p>Password</p>
@@ -17,8 +22,8 @@ const Login = () => {
                     </label>
                     <input type="submit" value="Login" />
                 </form>
-                <p className=''>Need an accout? <a href="">sign up</a></p>
-            </div>
+                <p className=''>Need an accout? <Link to="/register">sign up</Link></p>
+            </section>
         </div>
     )
 }

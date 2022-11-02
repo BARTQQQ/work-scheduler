@@ -9,14 +9,12 @@ export default class Calendar extends Component {
         super();
         this.state = {
             current: new Date(),
-            keepEvent: new Date()
+            keepEvent: new Date(),
+            hide: false
         }
 
         this.event = new Date(2022, 9, 20)
-        console.log(this.state.current)
     }
-
-    
 
     getMonthName() {
         let getMonthName = this.state.current.toLocaleString('default', { month: 'long' })
@@ -34,7 +32,7 @@ export default class Calendar extends Component {
         // console.log(this.state.current)
     }
 
-     changeDateOnClick = async (day) => {
+    changeDateOnClick = async (day) => {
         await this.setState({current: new Date(day.year, day.month, day.numberDay)})
         await this.setState({keepEvent: new Date(day.year, day.month, day.numberDay)})
         // console.log(this.state.current, this.state.keepEvent, day.numberDay)
@@ -43,24 +41,26 @@ export default class Calendar extends Component {
     render() {
         return (
             <div className='calendar-event-wrapper'>
-                <div className="calendar-body">
-                    <div className="calendar-header">
-                        <div className="calendar-month-switch">
-                            <div className="arrow-left" onClick={this.previousMonth}>
-                                <ArrowLeft className='arrow' />
-                            </div>
-                            <div className="calendar-header-date">
-                                <p>{this.getMonthName()}</p>
-                                <p>{this.state.current.getFullYear()}</p>
-                            </div>
-                            <div className="arrow-right" onClick={this.nextMonth}>
-                                <ArrowRight className='arrow' />
-                            </div>
+                <div className={"calendar-body" + (this.state.hide ? " event-hiden" : " event-open")}>
+                    <header className="calendar-month-switch">
+                        <div className="arrow-left" onClick={this.previousMonth}>
+                            <ArrowLeft className='icon arrow' />
                         </div>
-                    </div>
+                        <div className="calendar-header-date">
+                            <p>{this.getMonthName()}</p>
+                            <p>{this.state.current.getFullYear()}</p>
+                        </div>
+                        <div className="arrow-right" onClick={this.nextMonth}>
+                            <ArrowRight className='icon arrow' />
+                        </div>
+                        <div className='button-hide' onClick={() => this.setState({hide: !this.state.hide})}>{this.state.hide ? "OPEN" : "HIDE"}</div>
+
+                    </header>
                     <Days date = {this.state.current} eventDate = {this.event} changeDateOnClick = {this.changeDateOnClick} />
                 </div>
-                <Event date = {this.state.keepEvent}/>
+                <div className={this.state.hide ? "hide" : "open"}>
+                    <Event date = {this.state.keepEvent}/>
+                </div>
             </div>
         )
     }
