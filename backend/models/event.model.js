@@ -3,10 +3,19 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const eventSchema = new Schema({
-    userID: {type: Number},
-    hours: {type: Number},
-    date: {type: String},
-    remarks: {type: String}
+    groupId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Group'
+    },
+    hours: {
+        type: Number
+    },
+    date: {
+        type: Date
+    },
+    remarks: {
+        type: String
+    }
 },)
 
 const Event = mongoose.model('Event', eventSchema)

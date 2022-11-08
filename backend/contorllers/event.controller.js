@@ -3,7 +3,7 @@ const Event = require('../models/event.model')
 // @desc Get events
 // @route GET /api/events
 const getEvents = async (req, res) => {
-    const events = await Event.find({userID: req.body.userID})
+    const events = await Event.find()
 
     res.json(events)
 }

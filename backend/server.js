@@ -17,10 +17,13 @@ const connect = async () => {
 
 connect()
 
+// 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/event', require('./routes/event.route'))
 app.use('/api/user', require('./routes/user.route'))
+app.use('/api/group', require('./routes/group.route'))
+app.use('/api/event', require('./routes/event.route'))
+
 
 app.listen(port, () => console.log(`Server started on port ${port}`))
