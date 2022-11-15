@@ -199,6 +199,11 @@ body {
                 #name,
                 #surrname {
                     width: 48%;
+
+                    input[id=name],
+                    input[id=surrname] {
+                        width: 100%;
+                    }
                 }
 
                 input[type=text],
@@ -213,7 +218,7 @@ body {
                     border-bottom: 2px solid $second-theme;
                 }
 
-                input[type=submit] {
+                button {
                     background: $main;
                     color: $white;
                     width: 100%;
@@ -226,6 +231,7 @@ body {
                     &:hover {
                         background: $second-theme;
                         color: $main;
+                        transform: scale(0.97);
                     }
                 }
             }

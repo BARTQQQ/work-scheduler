@@ -137,6 +137,17 @@ body {
   width: 48%;
 }
 
+#root .user .user-login form #name input[id=name],
+#root .user .user-login form #name input[id=surrname],
+#root .user .user-login form #surrname input[id=name],
+#root .user .user-login form #surrname input[id=surrname],
+#root .user .user-register form #name input[id=name],
+#root .user .user-register form #name input[id=surrname],
+#root .user .user-register form #surrname input[id=name],
+#root .user .user-register form #surrname input[id=surrname] {
+  width: 100%;
+}
+
 #root .user .user-login form input[type=text],
 #root .user .user-login form input[type=email],
 #root .user .user-login form input[type=password],
@@ -152,8 +163,8 @@ body {
   border-bottom: 2px solid #d47a45;
 }
 
-#root .user .user-login form input[type=submit],
-#root .user .user-register form input[type=submit] {
+#root .user .user-login form button,
+#root .user .user-register form button {
   background: #212529;
   color: rgba(255, 255, 255, 0.8);
   width: 100%;
@@ -164,10 +175,11 @@ body {
   cursor: pointer;
 }
 
-#root .user .user-login form input[type=submit]:hover,
-#root .user .user-register form input[type=submit]:hover {
+#root .user .user-login form button:hover,
+#root .user .user-register form button:hover {
   background: #d47a45;
   color: #212529;
+  transform: scale(0.97);
 }
 
 #root .user .user-login p,
