@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const {getEvents, createEvent} = require('../contorllers/event.controller')
+const {auth} = require('../middleware/auth')
+const {authGroup} = require('../middleware/auth.group')
 
-router.get('/', getEvents)
-router.post('/create', createEvent)
+router.get('/:id', auth, getEvents)
+router.post('/create/:id', auth, authGroup, createEvent)
 
 
 module.exports = router

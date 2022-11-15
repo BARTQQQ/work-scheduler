@@ -7,11 +7,15 @@ const eventSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Group'
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Group'
+    },
     hours: {
         type: Number
     },
     date: {
-        type: Date
+        type: String
     },
     remarks: {
         type: String

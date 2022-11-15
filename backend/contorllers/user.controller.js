@@ -9,14 +9,14 @@ const registerUser = async (req, res) => {
 
     // sprawdza czy wszystkie pola zostaly wypelnione
     if(!name || !surrname || !email || !password){
-      res.json('Please add all fields')
+      res.status(400).json('Please add all fields')
     }
 
     // sprawdza czy uzytkownik o takim emailu istnieje
     const userExist = await User.findOne({email})
 
     if(userExist){
-      res.json('User already exists')
+      res.status(400).json('User already exists')
     }
     
     const hash = bcrypt.hashSync(password, 10)
@@ -29,14 +29,14 @@ const registerUser = async (req, res) => {
     })
   
     if (user) {
-      res.json({
+      res.status(201).json({
         _id: user.id,
         name: user.name,
         surrname: user.surrname,
         email: user.email
       })
     } else {
-      res.json('Invalid user data')
+      res.status(400).json('Invalid user data')
     }
 }
 
@@ -44,9 +44,7 @@ const registerUser = async (req, res) => {
 // @route POST /api/users/login
 const loginUser = async (req, res) => {
   const { email, password } = req.body
-
   const user = await User.findOne({ email })
-
   const validPass = await bcrypt.compare(password, user.password);
 
   // Tworzy i przypisuje token 
@@ -57,25 +55,12 @@ const loginUser = async (req, res) => {
   } else {
     res.json("Email or password is wrong");
   }
-
-  // if(user && validPass){
-  //   res.json({
-  //     _id: user.id,
-  //     name: user.name,
-  //     email: user.email,
-  //     token: token
-  //   })
-  // } else {
-  //   res.json("Email or password is wrong");
-  // }
 }
 
 // @desc get users
 // @route GET /api/users/
 const getUser = async (req, res) => {
-  // const me = await User.find({name: User.name})
   res.json(req.user)
-  // console.log(req.user)
 }
 
 module.exports = {registerUser, loginUser, getUser}

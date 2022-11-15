@@ -2,15 +2,14 @@ const Group = require('../models/group.model')
 
 const authGroup = async (req, res, next) => {
     try {
-        const logged = req.user.id
         const group = await Group.findById(req.params.id)
-        const groupOwner = group.ownerId.toString()
+        const memberGroup = await Group.findOne({_id: group.id ,members: {$elemMatch: {memberId: req.user.id}}})
 
-        if(logged === groupOwner){
+        if(req.user.id === group.ownerId.toString() || memberGroup){
             req.group = group
             next()
         } else {
-            res.json('No permission, u are not the owner of the group')
+            res.json('User not authorized, you are not a member of this group')
         }
 
     } catch(err) {

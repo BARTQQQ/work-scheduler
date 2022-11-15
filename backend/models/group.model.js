@@ -12,8 +12,16 @@ const groupSchema = new Schema({
     },
     members: [
         {
-            id: {
+            memberId: {
                 type: Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            name: {
+                type: Schema.Types.String,
+                ref: 'User'
+            },
+            email: {
+                type: Schema.Types.String,
                 ref: 'User'
             }
         }
