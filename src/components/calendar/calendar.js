@@ -24,18 +24,15 @@ export default class Calendar extends Component {
 
     previousMonth = async () => {
         await this.setState({current: new Date(this.state.current.setMonth(this.state.current.getMonth() - 1))})
-        // console.log(this.state.current)
     }
 
     nextMonth = async () => {
         await this.setState({current: new Date(this.state.current.setMonth(this.state.current.getMonth() + 1))})
-        // console.log(this.state.current)
     }
 
     changeDateOnClick = async (day) => {
         await this.setState({current: new Date(day.year, day.month, day.numberDay)})
         await this.setState({keepEvent: new Date(day.year, day.month, day.numberDay)})
-        // console.log(this.state.current, this.state.keepEvent, day.numberDay)
     }
     
     render() {

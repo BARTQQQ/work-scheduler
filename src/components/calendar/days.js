@@ -42,8 +42,6 @@ const Days = (props) => {
         }
         firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
         daysOfMonth.push(dataOfDay)
-
-        // console.log(daysOfMonth[i].dateString === eventDate ? true : false)
     }
     
     return (
