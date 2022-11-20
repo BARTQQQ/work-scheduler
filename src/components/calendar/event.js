@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {ReactComponent as Edit} from '../icons/edit-pen.svg'
-import {ReactComponent as Plus} from '../icons/plus.svg'
-import {ReactComponent as Delete} from '../icons/trash.svg'
+import EventItem from './eventItem';
+import {HiPlus} from 'react-icons/hi';
+
 
 export default class Event extends Component  {
 
@@ -25,19 +25,10 @@ export default class Event extends Component  {
                     <p>{this.props.date.getDate()} {this.getMonthName()} {this.props.date.getFullYear()}</p>
                 </header>
                 <div className="event-container">
-                    <div className="event-item">
-                        <div className="event-item-data">
-                            <p className="event-user">User</p>
-                            <p className="event-user-change">Od 10 do 18</p>
-                        </div>
-                        <div className="event-manage-data">
-                            <button className="event-icon" onClick={() => {console.log(this.props.date)}}><Edit className="event-icon-edit"/></button>
-                            <button className="event-icon" onClick={() => {console.log(this.props.date)}}><Delete className="event-icon-delete"/></button>
-                        </div>
-                    </div>
+                    <EventItem/>
                 </div>
-                <div className="event-manage">
-                    <button className="event-icon" onClick={() => {console.log(this.props.date)}}><Plus className="event-icon-add"/></button>
+                <div className="event-manage" title="Add">
+                    <button className="event-icon" onClick={() => {console.log(this.props.date)}}><HiPlus className="event-icon-add"/></button>
                 </div>
             </div>
         )

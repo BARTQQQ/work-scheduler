@@ -1,13 +1,12 @@
 const Group = require('../models/group.model')
 const User = require('../models/user.model')
-const asyncHandler = require('express-async-handler')
+
 // @desc Get groups
 // @route GET /api/groups
 const getGroups = async (req, res) => {
-    console.log(req.user.id)
-    const ownerGroups = await Group.find({
-        ownerId: req.user.id
-    })
+    // const ownerGroups = await Group.find({
+    //     ownerId: req.user.id
+    // })
     const memberGroups = await Group.find({
         members: {
             $elemMatch: {
@@ -16,14 +15,11 @@ const getGroups = async (req, res) => {
         }
     })
 
-    if(ownerGroups.length === 0 && memberGroups.length === 0) {
-        return res.status(200).json('No groups')
-    }
-
-    return res.status(200).json({
-        owner: ownerGroups,
+    res.status(200).json({
+        // owner: ownerGroups,
         member: memberGroups
     })
+    console.log(req.user.id)
 }
 
 // @desc create new group

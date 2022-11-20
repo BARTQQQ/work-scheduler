@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {ReactComponent as Edit} from '../icons/edit-pen.svg'
-import {ReactComponent as Delete} from '../icons/trash.svg'
+import {MdModeEdit} from 'react-icons/md';
+import {TiDelete} from 'react-icons/ti';
 
 export default class EventItem extends Component {
 
@@ -12,8 +12,8 @@ export default class EventItem extends Component {
                     <p className="event-user-change">Od 10 do 18</p>
                 </div>
                 <div className="event-manage-data">
-                    <button className="event-icon" onClick={() => {}}><Edit className="event-icon-edit"/></button>
-                    <button className="event-icon" onClick={() => {}}><Delete className="event-icon-delete"/></button>
+                    <button className="event-icon" onClick={() => {}}><TiDelete className="event-icon-delete"/></button>
+                    <button className="event-icon" onClick={() => {}}><MdModeEdit className="event-icon-edit"/></button>
                 </div>
             </div>
         )

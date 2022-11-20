@@ -12,8 +12,6 @@ const Days = (props) => {
 
     const eventDate = props.eventDate.toDateString()
 
-    console.log(daysOfMonth, weekDayOfFirstDayOfMonth)
-
     // adds week days to array also transoform date from int to string and sets first letter to uppercase  
     for(let i = 1; i <= 7; i++){
         let days = new Date(2022, 7, i).toLocaleString('default', { weekday: 'long' })
