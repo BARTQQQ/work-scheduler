@@ -3,7 +3,9 @@ import Days from './days'
 import Event from './event'
 import {MdArrowForwardIos, MdArrowBackIos} from 'react-icons/md';
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector,
+    //  useDispatch 
+    } from 'react-redux'
 
 export default class Calendar extends Component {
     constructor() {

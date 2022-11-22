@@ -62,71 +62,71 @@ const Register = () => {
 
     return (
         <div className="user">
-            <header><FaUserPlus className="icon register"/><h1>New account</h1></header>
+            <header className='user-header'><FaUserPlus className="icon register"/><h1>New account</h1></header>
             {isLoading ? <ReactLoading className='loading' type="bubbles" color="#212529" /> : 
             <section className="user-register">
                 <form onSubmit={onSubmit}>
                 <div className="input name">
                         <input 
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={name}
-                                    onChange={onChange}
-                                    placeholder="Name"
-                                />
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={onChange}
+                            placeholder="Name"
+                        />
                         <label htmlFor="name" data-type="register">
                                 <p><FaUser/></p>
                         </label>
                     </div>
                     <div className="input surrname">
                         <input 
-                                    type="text"
-                                    id="surrname"
-                                    name="surrname"
-                                    value={surrname}
-                                    onChange={onChange}
-                                    placeholder="Surrname"
-                                />
+                            type="text"
+                            id="surrname"
+                            name="surrname"
+                            value={surrname}
+                            onChange={onChange}
+                            placeholder="Surrname"
+                        />
                         <label htmlFor="surrname" data-type="register">
                                 <p><FaUser/></p>
                         </label>
                     </div>
                     <div className="input">
                         <input 
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={email}
-                                    onChange={onChange}
-                                    placeholder="Email"
-                                />
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={onChange}
+                            placeholder="Email"
+                        />
                         <label htmlFor="email" data-type="register">
                                 <p><MdAlternateEmail/></p>
                         </label>
                     </div>
                     <div className="input">
                         <input 
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    value={password}
-                                    onChange={onChange}
-                                    placeholder="Password"
-                                />
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={onChange}
+                            placeholder="Password"
+                        />
                         <label htmlFor="password" data-type="register">
                                 <p><MdLock/></p>
                         </label>
                     </div>
                     <div className="input">
                         <input 
-                                    type="password"
-                                    id="password2"
-                                    name="password2"
-                                    value={password2}
-                                    onChange={onChange}
-                                    placeholder="Confirm password"
-                                />
+                            type="password"
+                            id="password2"
+                            name="password2"
+                            value={password2}
+                            onChange={onChange}
+                            placeholder="Confirm password"
+                        />
                         <label htmlFor="password2" data-type="register">
                                 <p><MdLock/></p>
                         </label>

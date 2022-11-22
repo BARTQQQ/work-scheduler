@@ -13,13 +13,25 @@ const initialState = {
 export const getGroups = createAsyncThunk('group/get', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
-        console.log(token)
+        // console.log(token)
         return await groupService.getGroups(token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
     }
 })
+
+export const createGroup = createAsyncThunk('group/create', async (groupData, thunkAPI) => {
+  try {
+      const token = thunkAPI.getState().auth.user.token
+      // console.log(token)
+      return await groupService.createGroup(groupData, token)
+  } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+      return thunkAPI.rejectWithValue(message)
+  }
+})
+
 
 export const groupSlice = createSlice({
     name: 'group',
@@ -29,7 +41,6 @@ export const groupSlice = createSlice({
     },
     extraReducers: (builder) => {
       builder
-        
         .addCase(getGroups.pending, (state) => {
           state.isLoading = true
         })
@@ -39,6 +50,22 @@ export const groupSlice = createSlice({
           state.groups = action.payload
         })
         .addCase(getGroups.rejected, (state, action) => {
+          state.isLoading = false
+          state.isError = true
+          state.message = action.payload
+        })
+        .addCase(createGroup.pending, (state) => {
+          state.isLoading = true
+        })
+        .addCase(createGroup.fulfilled, (state, action) => {
+          state.isLoading = false
+          state.isSuccess = true
+          const data = Object.entries(action.payload)
+          console.log(state.groups['owner'].toString(), JSON.stringify(state.groups['owner']))
+          state.groups['owner'].push(action.payload)
+          // state.groups.push(data)
+        })
+        .addCase(createGroup.rejected, (state, action) => {
           state.isLoading = false
           state.isError = true
           state.message = action.payload

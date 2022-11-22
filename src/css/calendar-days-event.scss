@@ -21,7 +21,7 @@ $font-opacity: rgba(207, 207, 207, 0.7);
 $gray-hover: #2c2c2c;
 $gray-light: rgb(53,53,53);
 $gray-dark: #121212;
-$gray: rgba(8, 10, 12, 0.2);
+$gray: rgba(8, 10, 12, 0.5);
 
 // set px
 $border-radius: 10px;
@@ -40,6 +40,8 @@ $time: .3s;
     margin: 0;
     padding: 0;
 }
+
+::-webkit-scrollbar{    width: 1px;}
 
 body {
     @include display-flex(center, center);
@@ -66,10 +68,9 @@ body {
         @include display-flex(center, center);
         color: $font;
         width: 100%;
-        min-height: 100px;
         overflow: hidden;
         position: relative;
-        padding: 2em;
+
 
         h1,
         p{
@@ -80,7 +81,6 @@ body {
             width: 25px;
             height: 20px;
             fill: $black;
-            margin-right: 0.5em;
         }
 
         .login,
@@ -122,6 +122,12 @@ body {
             @include display-flex(center, center);
             align-self: center;
             flex: 1 1 auto;
+        }
+
+        .user-header,
+        .dashboard-header {
+            min-height: 100px;
+            padding: 2em;
         }
 
         .user-login,
@@ -222,10 +228,22 @@ body {
 
         .user-dashboard {
             @include display-flex(center, flex-start);
+            flex-direction: column;
+            height: 100%;
             padding: 1em;
+            overflow-y: scroll;
+
+            .empty {
+                margin-top: 2em;
+                width: 100%;
+                text-align: center;
+                flex-grow: 2;
+                opacity: .5;
+            }
 
             .groups {
                 width: 100%;
+                flex-grow: 2;
 
                 .owner,
                 .member {
@@ -235,6 +253,7 @@ body {
                     margin-bottom: 1em;
 
                     h2 {
+                        padding: 0 !important;
                         text-align: left;
                     }
 
@@ -252,9 +271,135 @@ body {
                     }
                 }
             }
+
+            button {
+                display: flex;
+                align-items: center;
+                align-self: center;
+                background: $gray-light;
+                color: $font;
+                padding: 1em 2em;
+                margin-bottom: 2em;
+                border: none;
+                border-radius: $border-radius;
+                transition: $time;
+                cursor: pointer;
+
+                svg {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 5px;
+                }
+
+                &:hover {
+                    transform: scale(0.97);
+                    background: $green-hover;
+                    color: $font-opacity;
+                }
+            }
         }
 
-        .header-dashboard {
+        .popup {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 999;
+
+            .overlay {
+                position: absolute;
+                width: 100%;
+                height: 100vh;
+                background: $gray;
+            }
+
+            .popup-content {
+                position: relative;
+                width: 50%;
+                margin: 0 auto;
+                height: auto;
+                max-height: 70vh;
+                margin-top: calc(100vh - 85vh - 20px);
+                background: $gray-light;
+                border-radius: $border-radius;
+                padding: 2em;
+                overflow: auto;
+
+                .popup-header {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 2em;
+
+                    .popup-icon-close {
+                        border: none;
+                        background: none;
+                        cursor: pointer;
+                        transition: $time;
+                        
+                        svg {
+                            width: 24px;
+                            height: 24px;
+                            fill: $font;
+                        }
+    
+                        &:hover > svg {
+                            fill: $red;
+                        }
+                    }
+                }
+
+                .form {
+                    display: flex;
+                    flex-direction: column;
+
+                    form {
+                        .input {
+                            margin: 0 0 1em 0;
+
+                            label {
+                                height: fit-content;
+                                color: $font-opacity;
+
+                                p {
+                                    margin-bottom: .5em;
+                                }
+
+                                input {
+                                    width: 100%;
+                                    outline: none;
+                                    border: none;
+                                    border-radius: $border-radius;
+                                    padding: 1em;
+                                    background: $gray-dark;
+                                    color: $gray-light;
+                                }
+                            }
+                        }
+
+                        button {
+                            background: $second-theme;
+                            border-radius: $border-radius;
+                            color: $font;
+                            width: 100%;
+                            border: none;
+                            padding: 1em;
+                            transition: $time;
+                            cursor: pointer;
+        
+                            &:hover {
+                                background: $green-hover;
+                                transform: scale(0.97);
+                            }
+                        }
+                    }
+                }
+            }
+               
+        }
+
+        .dashboard-header {
 
             section {
                 width: 100%;
@@ -354,7 +499,7 @@ body {
                 .event-container {
                     flex-grow: 2;
                     position: relative;
-                    z-index: 999;
+                    z-index: 2;
                     overflow: hidden;
 
                     &:after {
@@ -474,6 +619,8 @@ body {
                     width: auto;
                     border-radius: $border-radius;
                     background: $main;
+                    min-height: 100px;
+                    padding: 2em;
     
                     &::before {
                         content: '';
@@ -500,6 +647,8 @@ body {
     
                     .arrow-left {
                         .arrow {
+                            margin-right: 0.5em;
+
                             &:hover {
                                 transform: translateX(-5px);
                             }
@@ -508,6 +657,8 @@ body {
     
                     .arrow-right {
                         .arrow {
+                            margin-left: 0.5em;
+
                             &:hover {
                                 transform: translateX(5px);
                             }

@@ -16,10 +16,6 @@ const getGroups = async (req, res) => {
         }
     })
 
-    if(ownerGroups.length === 0 && memberGroups.length === 0) {
-        return res.status(200).json('No groups')
-    }
-
     return res.status(200).json({
         owner: ownerGroups,
         member: memberGroups
@@ -34,18 +30,24 @@ const createGroup = async (req, res) => {
     const groupExist = await Group.findOne({title})
 
     if(groupExist){
-        return res.status(400).json('Group already exists')
+        return res.status(400).json({message: 'Group already exists'})
+    }
+
+    if(title.length === 0){
+        return res.status(400).json({message: 'Add group name'})
     }
     
     const group = await Group.create({
         ownerId: req.user.id,
-        title: title
+        title: title,
+
     })
 
     if(group) {
         return res.status(201).json({
             ownerId: group.ownerId,
-            title: group.title
+            title: group.title,
+            members: []
           })
     }
 }

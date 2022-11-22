@@ -57,32 +57,32 @@ const Login = () => {
 
     return (
         <div className="user">
-            <header><FaUser className="icon login"/><h1>Login</h1></header>
+            <header className="user-header"><FaUser className="icon login"/><h1>Login</h1></header>
             {isLoading ? <ReactLoading className='loading' type="bubbles" color="#212529" /> : 
             <section className="user-login">
                 <form onSubmit={onSubmit}>
                     <div className="input">
                         <input 
-                                    type="text"
-                                    id="email"
-                                    name="email"
-                                    value={email}
-                                    onChange={onChange}
-                                    placeholder="Email"
-                                />
+                            type="text"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={onChange}
+                            placeholder="Email"
+                        />
                         <label htmlFor="email" data-type="login">
                                 <p><MdAlternateEmail/></p>
                         </label>
                     </div>
                     <div className="input">
                         <input 
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    value={password}
-                                    onChange={onChange}
-                                    placeholder="Password"
-                                />
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={onChange}
+                            placeholder="Password"
+                        />
                         <label htmlFor="password" data-type="login">
                                 <p><MdLock/></p>
                         </label>
