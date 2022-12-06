@@ -9,11 +9,11 @@ const authGroup = async (req, res, next) => {
             req.group = group
             next()
         } else {
-            res.json('User not authorized, you are not a member of this group')
+            return res.status(401).json({message: 'User not authorized'})
         }
 
     } catch(err) {
-        res.json(err)
+        return res.status(401).json({message: err})
     }
 }
   

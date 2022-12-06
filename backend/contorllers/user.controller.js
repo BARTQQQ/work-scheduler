@@ -38,7 +38,6 @@ const registerUser = async (req, res) => {
       password: hash
     })
   
-    console.log(user)
     if (user) {
       return res.status(201).json({
         _id: user.id,

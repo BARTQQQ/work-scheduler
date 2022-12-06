@@ -11,7 +11,13 @@ const eventSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Group'
     },
-    hours: {
+    user: {
+        type: String
+    },
+    start: {
+        type: Number
+    },
+    end: {
         type: Number
     },
     date: {
@@ -20,7 +26,9 @@ const eventSchema = new Schema({
     remarks: {
         type: String
     }
-},)
+}, {
+    timestamps: true
+})
 
 const Event = mongoose.model('Event', eventSchema)
 
