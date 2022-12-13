@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify';
+import { getEvents } from '../../features/event/eventSlice'
+
 
 const Days = (props) => {
+    const { id } = useParams()
+    const dispatch = useDispatch()
+
+    const {events, eventError, eventmessage} = useSelector(
+        (state) => state.event
+    )
+
+
+    useEffect(() => {
+        if(eventError) {
+            toast.error(eventmessage)
+        }
+
+        if(!id) return
+
+        dispatch(getEvents(id))
+    }, [id, eventError, eventmessage])
+
+
     const current = props.date
     const year = current.getFullYear()
     const month = current.getMonth()
@@ -10,7 +34,7 @@ const Days = (props) => {
     let weekDays = []
     let daysOfMonth = []
 
-    const eventDate = props.eventDate.toDateString()
+    // const eventDate = props.eventDate.toDateString()
 
     // adds week days to array also transoform date from int to string and sets first letter to uppercase  
     for(let i = 1; i <= 7; i++){
@@ -32,6 +56,7 @@ const Days = (props) => {
         let dataOfDay = {
             date: (new Date(firstDayOfMonth)),
             dateString: firstDayOfMonth.toDateString(),
+            dateNumber: firstDayOfMonth.toLocaleDateString(),
             year: firstDayOfMonth.getFullYear(),
             month: firstDayOfMonth.getMonth(),
             selected: (i === props.date.getDate()),
@@ -57,7 +82,13 @@ const Days = (props) => {
                         return (
                             <div key={i} className={"calendar-day" + (day.empty ? " empty" : " fill" + (day.currentDay ? " current-day" : ""))} onClick = {() => {props.changeDateOnClick(day)}}>
                                 <p className={"calendar-day-number" + (day.selected ? " selected" : "")}>{day.numberDay}</p>
-                                <p className='calendar-day-event-date'>{eventDate === day.dateString ? "a" : " "}</p>
+                                {events.map((eventDate, i) => {
+                                    if(eventDate.date.toString() === day.dateNumber) {
+                                        return <p key={i} className={'calendar-day-event-date ' + (day.selected ? " selected" : "")}>{eventDate.user}</p>
+                                    } else {
+                                        return ""
+                                    }
+                                    })}
                             </div>
                         )
                     })}

@@ -31,7 +31,7 @@ const Login = () => {
         }
     
         if (isSuccess || user) {
-            navigate('/')
+            navigate('/group')
         }
     
         dispatch(reset())
@@ -58,7 +58,7 @@ const Login = () => {
     return (
         <div className="user">
             <header className="user-header"><FaUser className="icon login"/><h1>Login</h1></header>
-            {isLoading ? <ReactLoading className='loading' type="bubbles" color="#212529" /> : 
+            {isLoading ? <ReactLoading className='loading' type="bubbles" color="#cfcfcf" /> : 
             <section className="user-login">
                 <form onSubmit={onSubmit}>
                     <div className="input">

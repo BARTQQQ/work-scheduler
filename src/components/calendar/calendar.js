@@ -1,74 +1,91 @@
-import React, {Component} from 'react'
-import Days from './days'
-import Event from './event'
+import React, { useState, useEffect }  from 'react'
+import Days from './Days'
+import Event from './Event'
 import {MdArrowForwardIos, MdArrowBackIos} from 'react-icons/md';
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
-import { useSelector,
-    //  useDispatch 
-    } from 'react-redux'
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { getGroup} from '../../features/group/groupSlice'
+import { getEvents } from '../../features/event/eventSlice'
 
-export default class Calendar extends Component {
-    constructor() {
-        super();
-        this.state = {
-            current: new Date(),
-            keepEvent: new Date(),
-            hide: false,
+const Calendar = () => {
+    const { id } = useParams()
+    const dispatch = useDispatch()
+
+    const {user} = useSelector((state) => state.auth)
+    const {events} = useSelector(
+        (state) => state.event
+    )
+
+    useEffect(() => {
+        if(!id){
+            return
         }
 
-        this.event = new Date(2022, 9, 20)
-    }
+        dispatch(getGroup(id))
+        dispatch(getEvents(id))
+    }, [id])
 
-    getUser() {
-        const {user} = useSelector((state) => state.auth)
-        console.log(user)
-    }
 
-    getMonthName() {
-        let getMonthName = this.state.current.toLocaleString('default', { month: 'long' })
-        let getMonthNameToUpperCase = getMonthName.charAt(0).toUpperCase() + getMonthName.slice(1)
+    const [current, setCurrent] = useState(new Date())
+    const [keepEvent, setKeepEvent] = useState(new Date())
+    const [hide, setHide] = useState(false)
+
+    const getMonthName = () => {
+        const getMonthName = current.toLocaleString('default', { month: 'long' })
+        const getMonthNameToUpperCase = getMonthName.charAt(0).toUpperCase() + getMonthName.slice(1)
         return getMonthNameToUpperCase
     }
 
-    previousMonth = async () => {
-        await this.setState({current: new Date(this.state.current.setMonth(this.state.current.getMonth() - 1))})
+    let previousMonth = async () => {
+        setCurrent(new Date(current.setMonth(current.getMonth() - 1)))
+        console.log(current)
     }
 
-    nextMonth = async () => {
-        await this.setState({current: new Date(this.state.current.setMonth(this.state.current.getMonth() + 1))})
+    let nextMonth = async () => {
+        setCurrent(new Date(current.setMonth(current.getMonth() + 1)))
     }
 
-    changeDateOnClick = async (day) => {
-        await this.setState({current: new Date(day.year, day.month, day.numberDay)})
-        await this.setState({keepEvent: new Date(day.year, day.month, day.numberDay)})
+    let changeDateOnClick = async (day) => {
+        setCurrent(new Date(day.year, day.month, day.numberDay))
+        setKeepEvent(new Date(day.year, day.month, day.numberDay))
+    }
+
+    const toggleEvent = () => {
+        setHide(!hide);
     }
     
-    render() {
-        return (
-            <div className='calendar-event-wrapper'>
-                <div className={"calendar-body" + (this.state.hide ? " event-hiden" : " event-open")}>
-                    <nav>
-                        <header className="calendar-month-switch">
-                            <div className="arrow-left" onClick={this.previousMonth}>
-                                <MdArrowBackIos className='icon arrow' />
-                            </div>
-                            <div className="calendar-header-date">
-                                <p>{this.getMonthName()}</p>
-                                <p>{this.state.current.getFullYear()}</p>
-                            </div>
-                            <div className="arrow-right" onClick={this.nextMonth}>
-                                <MdArrowForwardIos className='icon arrow' />
-                            </div>
+    return (
+        <div className='calendar-event-wrapper'>
+            <div className={"calendar-body" + (hide ? " event-hiden" : " event-open")} data-type={hide}>
+                <nav>
+                    <header className="calendar-month-switch">
+                        <div className="arrow-left" onClick={previousMonth}>
+                            <MdArrowBackIos className='icon arrow' />
+                        </div>
+                        <div className="calendar-header-date">
+                            <p>{getMonthName()}</p>
+                            <p>{current.getFullYear()}</p>
+                        </div>
+                        <div className="arrow-right" onClick={nextMonth}>
+                            <MdArrowForwardIos className='icon arrow' />
+                        </div>
 
-                        </header>
-                        <div className='button-hide' onClick={() => this.setState({hide: !this.state.hide})}>{this.state.hide ? <p><FaEyeSlash/> Show</p> : <p><FaEye/> Hide</p>}</div>
-                    </nav>
-                    <Days date = {this.state.current} eventDate = {this.event} changeDateOnClick = {this.changeDateOnClick} />
-                </div>
-                <div className={this.state.hide ? "hide" : "open"}>
-                    <Event date = {this.state.keepEvent}/>
-                </div>
+                    </header>
+                    {user ? (
+                        <div className='button-hide' onClick={toggleEvent}>{hide ? <p><FaEyeSlash/> Show</p> : <p><FaEye/> Hide</p>}</div>
+                    ) : (false)}
+                </nav>
+                <Days date = {current} eventDate = {events} changeDateOnClick = {changeDateOnClick} />
             </div>
-        )
-    }
+            {user ? (
+                <div className={hide ? "hide" : "open"}>
+                    <Event date = {keepEvent} events = {events} />
+                </div>
+            ) : (false)}
+
+        </div>
+    )
 }
+
+export default Calendar

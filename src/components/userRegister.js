@@ -63,7 +63,7 @@ const Register = () => {
     return (
         <div className="user">
             <header className='user-header'><FaUserPlus className="icon register"/><h1>New account</h1></header>
-            {isLoading ? <ReactLoading className='loading' type="bubbles" color="#212529" /> : 
+            {isLoading ? <ReactLoading className='loading' type="bubbles" color="#cfcfcf" /> : 
             <section className="user-register">
                 <form onSubmit={onSubmit}>
                 <div className="input name">
@@ -133,7 +133,7 @@ const Register = () => {
                     </div>
                     <button type="submit">Register</button>
                 </form>
-                <p className=''>Have an accout? <Link to="/login" data-type="login">login</Link></p>
+                <p className=''>Have an accout? <Link to="/" data-type="login">login</Link></p>
             </section>}
            
         </div>

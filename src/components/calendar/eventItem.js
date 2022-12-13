@@ -1,21 +1,49 @@
-import React, {Component} from 'react'
-import {MdModeEdit} from 'react-icons/md';
-import {TiDelete} from 'react-icons/ti';
+import React from 'react'
+import { HiTrash } from 'react-icons/hi';
+import { deleteEvent} from '../../features/event/eventSlice'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom';
 
-export default class EventItem extends Component {
 
-    render() {
-        return (
-            <div className="event-item">
-                <div className="event-item-data">
-                    <p className="event-user">User</p>
-                    <p className="event-user-change">Od 10 do 18</p>
-                </div>
-                <div className="event-manage-data">
-                    <button className="event-icon" onClick={() => {}}><TiDelete className="event-icon-delete"/></button>
-                    <button className="event-icon" onClick={() => {}}><MdModeEdit className="event-icon-edit"/></button>
-                </div>
-            </div>
-        )
+
+const EventItem = (props) => {
+    const { id } = useParams()
+    const dispatch = useDispatch()
+
+
+    const start = JSON.stringify(props.data.start)
+    const end = JSON.stringify(props.data.end)
+    const total = end - start
+
+    const eventDelete = () => {
+        dispatch(deleteEvent([id, props.data._id]))
     }
+
+    console.log(props.data)
+
+    return (
+        <div className="event-item">
+            <div className="event-item-data">
+                <div className="event-user">{props.data.user}</div>
+                <div className="event-date">{new Date(props.data.createdAt).toLocaleString('default')}</div>
+                <div className="event-user-change">
+                    <p><b>From: </b>{start} </p>
+                    <p><b>To: </b>{end} </p>
+                    <p><b>Total: </b>{total}</p>
+                </div>
+                {props.data.remarks.length > 0 ? (
+                <p className="event-remarks">
+                    <b>Remarks:</b><br />
+                    {props.data.remarks}
+                </p>
+                ): ('')}
+
+            </div>
+            <div className="event-manage-data">
+                <button className="event-icon" onClick={eventDelete}>Delete<HiTrash className="event-icon-delete"/></button>
+            </div>
+        </div>
+    )
 }
+
+export default EventItem

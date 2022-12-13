@@ -6,10 +6,11 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Calendar from './components/calendar/calendar'
+import Calendar from './components/calendar/Calendar'
 import Dashboard from './components/Dashboard';
 import Login from './components/userLogin'
 import Register from './components/userRegister'
+import GroupDetails from './components/group/GroupDetails'
 import './css/calendar-days-event.css'
 
 function App() {
@@ -17,9 +18,10 @@ function App() {
       <>
         <Router>
             <Routes>
-                <Route path="/" element={<Dashboard/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
+                <Route path="/" element={<><Login/><Calendar/></>}/>
+                <Route path="/register" element={<><Register/><Calendar/></>}/>
+                <Route path="/group" element={<><Dashboard/><Calendar/></>}/>
+                <Route path="/group/:id" element={<><GroupDetails/><Calendar/></>}/>
             </Routes>
             <ToastContainer
           position="bottom-center"
@@ -30,9 +32,6 @@ function App() {
           theme="dark"
         />
         </Router>
-        
-        <Calendar />
-
       </>
     )
 }

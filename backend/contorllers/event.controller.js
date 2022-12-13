@@ -31,8 +31,6 @@ const createEvent = async (req, res) => {
           "members.$": 1
         });
 
-        console.log(member)
-
         if (req.group.ownerId.toString() !== req.user.id) {
             return res.status(401).json({message: 'User not authorized'})
         }
