@@ -9,6 +9,8 @@ const registerUser = async (req, res) => {
 
     const userExist = await User.findOne({email})
 
+    const option = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+
     if (userExist) {
       return res.status(400).json({message: 'User already exists'})
     }
@@ -28,6 +30,11 @@ const registerUser = async (req, res) => {
     if(!password){
       return res.status(400).json({message:'Add a password'})
     }
+
+    if(password.search(option)){
+      return res.status(400).json({message:'Password should be min 8 letter, with at least a symbol, upper and lower case letters and a number'})
+    }
+
 
     const hash = bcrypt.hashSync(password, 10)
 

@@ -27,8 +27,7 @@ const EventItem = (props) => {
                 <div className="event-user">{props.data.user}</div>
                 <div className="event-date">{new Date(props.data.createdAt).toLocaleString('default')}</div>
                 <div className="event-user-change">
-                    <p><b>From: </b>{start} </p>
-                    <p><b>To: </b>{end} </p>
+                    <p><b>From-To: </b>{start} - {end} </p>
                     <p><b>Total: </b>{total}</p>
                 </div>
                 {props.data.remarks.length > 0 ? (
