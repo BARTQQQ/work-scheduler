@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {TiDelete} from 'react-icons/ti';
 import { useDispatch } from 'react-redux'
-import { createEvent } from '../../features/event/eventSlice'
+import { updateEvent, resetEvent, getEvents} from '../../features/event/eventSlice'
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 
-const CreateForm = (props) => {
+const UpdateForm = (props) => {
     const { id } = useParams()
     const [formData, setFormData] = useState({
-        email: '',
-        start: '',
-        end: '',
-        date: props.date,
-        remarks: '',
+        email,
+        start: props.data.start,
+        end: props.data.end,
+        date: props.data.date,
+        remarks: props.data.remarks,
     })
+    const { email, start, end, date, remarks } = formData
 
     const {group} = useSelector(
         (state) => state.group
     )
 
-    console.log(formData)
-
-    const { email, start, end, date, remarks } = formData
 
     const dispatch = useDispatch()
 
-    const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }))
-    }
+    useEffect(() => {
+        const selectedOption = group.members.find(member => member.name === props.data.user);
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          email: selectedOption.email,
+        }));
+      }, []);
+
+    const onChange = event => {
+        setFormData({
+          ...formData,
+          [event.target.name]: event.target.value,
+        });
+      };
   
     const onSubmit = (e) => {
         e.preventDefault()
@@ -46,7 +52,8 @@ const CreateForm = (props) => {
                 date,
                 remarks
             }
-            dispatch(createEvent([id, eventData]))
+            dispatch(updateEvent([id, props.data._id, eventData]))
+            // dispatch(getEvents())
         }
     }
 
@@ -64,10 +71,14 @@ const CreateForm = (props) => {
                         <label htmlFor="email">
                             <p>Member</p>
                             <select id="email" name="email"onChange={onChange}>
-                                <option value="" selected disabled hidden>Choose</option>
                                 {group.members && group.members.length > 0 ? (
                                     group.members.map( (member, id) => 
-                                    <option value={member.email} key={id} onChange={onChange}>{member.name}  ({member.email})</option> )
+                                        member.name === props.data.user ? (
+                                            <option value={member.email} key={id}selected>{member.name} ({member.email})</option>
+                                        ) : (
+                                            <option value={member.email} key={id}>{member.name} ({member.email})</option>
+                                        )
+                                    )
                                 ): (false)}
                             </select>
                         </label>
@@ -108,7 +119,7 @@ const CreateForm = (props) => {
                             />
                         </label>
                     </div>
-                    <button type="submit">Create</button>
+                    <button type="submit">Update</button>
                 </form>
             </section>
         </section>
@@ -116,4 +127,4 @@ const CreateForm = (props) => {
   )
 }
 
-export default CreateForm
+export default UpdateForm

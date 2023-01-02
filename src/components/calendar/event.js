@@ -55,8 +55,6 @@ const Event = (props) =>  {
                     })
 
             )}
-                
-                
             </div>
             <div className="event-manage" title="Add">
                 <button className="event-icon" onClick={toggleAdd}><HiPlus className="event-icon-add"/></button>

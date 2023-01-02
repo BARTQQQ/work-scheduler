@@ -669,17 +669,20 @@ body {
                 }
     
                 .event-container {
-                    flex-grow: 2;
+                    display: flex;
+                    flex: 1;
                     justify-self: center;
-                    justify-content: center;
+                    flex-direction: column;
+                    // justify-content: center;
+                    // align-items: flex-start;
                     position: relative;
                     z-index: 2;
                     overflow-y: scroll;
 
                     .loading {
-                        @include display-flex(center, center);
+                        display: flex;
+                        justify-content: center;
                         align-self: center;
-                        flex: 1 1 auto;
                     }
 
                     &:after {
@@ -699,13 +702,14 @@ body {
     
                     .event-item {
                         display: flex;
-                        justify-content: space-between;
+                        // justify-content: space-between;
                         border-radius: $border-radius;
                         margin: 1em;
                         overflow: hidden;
                         flex-direction: column;
                         background: $yellow;
                         color: $gray-light;
+                        min-height: 120px;
 
                         .event-item-data {
                             display: flex;
@@ -732,15 +736,19 @@ body {
                         }
     
                         .event-manage-data {
+                            display: flex;
                             background: $yellow-dark;
                             width: 100%;
                             
                             button {
                                 color: $gray;
                                 display: flex;
+                                width: 50%;
+                                font-weight: 600;
                                 align-items: center;
+                                justify-content: center;
                                 background: none;
-                                padding: .3em 1em;
+                                padding: .3em 0;
                                 border: none;
                                 cursor: pointer;
                                 transition: $time;
@@ -751,14 +759,14 @@ body {
                                     height: 18px;
                                     transition: $time;
                                 }
+                            }
 
-                                &:hover {
-                                    color: $yellow;
-                                }
+                            .update:hover {
+                                background: $green-hover;
+                            }
 
-                                &:hover > svg {
-                                    fill: $yellow;
-                                }
+                            .delete:hover {
+                                background: $red-hover;
                             }
                         }
                     }

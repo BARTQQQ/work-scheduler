@@ -57,6 +57,59 @@ const createEvent = async (req, res) => {
     }
 }
 
+// @desc update new event
+// @route PUT /api/events/update
+const udpateEvent = async (req, res) => {
+    const {email, start, end, date, remarks} = req.body
+    const memberGroup = await Group.findOne({
+        _id: req.group.id,
+        members: {
+            $elemMatch: {
+                email: email
+            }
+        }
+    })
+
+    if(req.group.ownerId.toString() === req.user.id) {
+        if(memberGroup) {
+            const member = await Group.findOne({
+                _id: req.group.id,
+                "members.email": email
+            },
+            {
+              "members.$": 1
+            });
+    
+            const userId = member.members[0].memberId.toString()
+            const userName = member.members[0].name.toString()
+        
+            const event = await Event.findOneAndUpdate({
+                _id: req.params.eventId
+            },{
+                $set: {
+                    userId: userId,
+                    user: userName,
+                    start: start,
+                    end: end,
+                    date: date,
+                    remarks: remarks,
+                }
+            })
+    
+            const eventUpdated = await Event.findById({_id: req.params.eventId})
+        
+            if(eventUpdated){
+                return res.status(200).json(eventUpdated)
+            }
+        } else {
+            return res.status(401).json({message: 'User is not member'})
+        }
+    } else {
+        return res.status(401).json({message: 'User not authorized'})
+    }
+    
+}
+
 const deleteEvent = async (req, res) => {
     const event = await Event.findById(req.params.eventId)
     
@@ -74,4 +127,4 @@ const deleteEvent = async (req, res) => {
 }
 
 
-module.exports = {getEvents, createEvent, deleteEvent}
+module.exports = {getEvents, createEvent, deleteEvent, udpateEvent}

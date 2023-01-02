@@ -1,15 +1,14 @@
-import React from 'react'
-import { HiTrash } from 'react-icons/hi';
+import React, {useState, useEffect } from 'react';
+import { HiTrash, HiPencilAlt } from 'react-icons/hi';
 import { deleteEvent} from '../../features/event/eventSlice'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
-
-
+import UpdateForm from './UpdateForm'
 
 const EventItem = (props) => {
     const { id } = useParams()
     const dispatch = useDispatch()
-
+    const [isAddOpen, setIsAddOpen] = useState(false);
 
     const start = JSON.stringify(props.data.start)
     const end = JSON.stringify(props.data.end)
@@ -17,6 +16,10 @@ const EventItem = (props) => {
 
     const eventDelete = () => {
         dispatch(deleteEvent([id, props.data._id]))
+    }
+
+    const toggleAdd = () => {
+        setIsAddOpen(!isAddOpen);
     }
 
     console.log(props.data)
@@ -39,8 +42,10 @@ const EventItem = (props) => {
 
             </div>
             <div className="event-manage-data">
-                <button className="event-icon" onClick={eventDelete}>Delete<HiTrash className="event-icon-delete"/></button>
+                <button className="event-icon update" onClick={toggleAdd}>Update<HiPencilAlt className="event-icon-udpate"/></button>
+                <button className="event-icon delete" onClick={eventDelete}>Delete<HiTrash className="event-icon-delete"/></button>
             </div>
+            {isAddOpen && <UpdateForm handleClose={toggleAdd} data={props.data}/>}
         </div>
     )
 }

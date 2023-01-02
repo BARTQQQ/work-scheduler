@@ -30,6 +30,17 @@ export const createEvent = createAsyncThunk('event/create', async (eventData, th
     }
 })
 
+export const updateEvent = createAsyncThunk('event/update', async (eventData, thunkAPI) => {
+  try {
+      const [id, event, data] = eventData 
+      const token = await thunkAPI.getState().auth.user.token
+      return await eventService.updateEvent(id, event, data, token)
+  } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+      return thunkAPI.rejectWithValue(message)
+  }
+})
+
 export const deleteEvent = createAsyncThunk('event/delete', async (eventData, thunkAPI) => {
     try {
         const [id, event] = eventData 
@@ -74,6 +85,25 @@ export const eventSlice = createSlice({
             state.eventLoading = false
             state.eventError = true
             state.eventmessage = action.payload
+          })
+          .addCase(updateEvent.pending, (state) => {
+            state.eventLoading = true
+          })
+          .addCase(updateEvent.fulfilled, (state, action) => {
+            state.eventLoading = false
+            state.eventSuccess = true
+            state.events = state.events.map(event => {
+              if (event._id === action.payload._id) {
+                return action.payload;
+              }
+              return event;
+            });
+          })
+          .addCase(updateEvent.rejected, (state, action) => {
+            state.eventLoading = false
+            state.eventError = true
+            state.eventmessage = action.payload
+
           })
           .addCase(deleteEvent.pending, (state) => {
             state.eventLoading = true
