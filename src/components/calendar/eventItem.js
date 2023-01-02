@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { HiTrash, HiPencilAlt } from 'react-icons/hi';
 import { deleteEvent} from '../../features/event/eventSlice'
 import { useDispatch } from 'react-redux'

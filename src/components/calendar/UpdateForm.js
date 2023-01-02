@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {TiDelete} from 'react-icons/ti';
 import { useDispatch } from 'react-redux'
-import { updateEvent, resetEvent, getEvents} from '../../features/event/eventSlice'
+import { updateEvent} from '../../features/event/eventSlice'
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 const UpdateForm = (props) => {
     const { id } = useParams()
     const [formData, setFormData] = useState({
-        email,
+        email: '',
         start: props.data.start,
         end: props.data.end,
         date: props.data.date,
