@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/group/'
+const API_URL = 'https://work-scheduler-api.vercel.app/api/group/'
 
 const getGroups = async (token) => {
     const config = {
